@@ -1,0 +1,1948 @@
+{
+  "schema_version": 1,
+  "lfcquality_version": "0.1.0",
+  "fields": {
+    "density.d64": {
+      "schema_version": 1,
+      "lfcquality_version": "0.1.0",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "dtype": "<f8",
+      "backend": {
+        "abi_version": 1,
+        "openmp": 201511,
+        "fftw": true,
+        "fftw_threads": true,
+        "fftw_version": "fftw-3.3.11-sse2-avx",
+        "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+        "build": {
+          "source_sha256": "9f7d67c83feabef7c0125115482d2fca2ae46ca7edb9bbf793c1520bf9bc3c8d",
+          "compiler_version": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+          "compile_flags": [
+            "c++",
+            "-std=c++17",
+            "-O3",
+            "-fPIC",
+            "-shared",
+            "-pthread",
+            "-fno-fast-math",
+            "-ffp-contract=off",
+            "-fopenmp",
+            "-DLFQ_FFTW",
+            "-DLFQ_FFTW_THREADS",
+            "-I/data0/lb/lfcquality/.native-deps/include"
+          ],
+          "link_flags": [
+            "-L/data0/lb/lfcquality/.native-deps/lib",
+            "-Wl,-rpath,/data0/lb/lfcquality/.native-deps/lib",
+            "-lfftw3_threads",
+            "-lfftw3",
+            "-lm"
+          ],
+          "openmp": "required",
+          "fftw": "required",
+          "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+          "library": "/home/lb/.cache/lfcquality/Linux-x86_64/9f7d67c83feabef7c012/47fd2af247406833/liblfcquality.so"
+        },
+        "threads_requested": 8,
+        "omp_team_size_probe": 8
+      },
+      "metrics": {
+        "error": {
+          "rmse": 1.623283292107795e-05,
+          "max_abs_error": 0.00020763225247910633,
+          "mean_error": -4.1300424015425934e-07,
+          "original_min": 0.9999927858721971,
+          "original_max": 2.8821211575459245,
+          "data_range": 1.8821283716737274,
+          "range_source": "original_max_minus_min"
+        },
+        "psnr": {
+          "value_db": 101.28509845559186,
+          "nrmse": 8.624721440569178e-06,
+          "nrmse_status": "ok",
+          "status": "ok"
+        },
+        "pcc": {
+          "value": 0.9999999972741122,
+          "one_minus_pcc": 2.7258878487756988e-09,
+          "status": "ok"
+        },
+        "ssim": {
+          "value": 0.999999973255701,
+          "window": [
+            7,
+            7,
+            7
+          ],
+          "stride": [
+            4,
+            4,
+            4
+          ],
+          "weights": "uniform",
+          "covariance": "population",
+          "boundary": "valid",
+          "data_range": 1.8821283716737274,
+          "K1": 0.01,
+          "K2": 0.03,
+          "window_count": 29791,
+          "status": "ok"
+        },
+        "error_autocorrelation": {
+          "normalization": "global-centered lag-product sum / full-field centered-square sum",
+          "boundary": "valid",
+          "error_definition": "reconstructed - original",
+          "values": [
+            {
+              "axis": 0,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.1957367996424356,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.11187617122995035,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.1749328890968797,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.0998603732221204,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.1997021500090707,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.10913745048058851,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.18681663660634049,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.12319210345211007,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.20089977395962907,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.1060339193090292,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.19075399892997327,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.13072704700879387,
+              "status": "ok"
+            }
+          ]
+        },
+        "autocorrelation": {
+          "normalization": "global-centered lag-product sum / full-field centered-square sum",
+          "boundary": "valid",
+          "values": [
+            {
+              "axis": 0,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.9439293180205608,
+              "reconstructed": 0.9439295848446454,
+              "delta": 2.668240846048775e-07,
+              "absolute_delta": 2.668240846048775e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.8821111920497277,
+              "reconstructed": 0.882111434137054,
+              "delta": 2.4208732629649177e-07,
+              "absolute_delta": 2.4208732629649177e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.747569351783728,
+              "reconstructed": 0.7475687956378317,
+              "delta": -5.561458962244359e-07,
+              "absolute_delta": 5.561458962244359e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": 0.4806881649569598,
+              "reconstructed": 0.4806869021105833,
+              "delta": -1.2628463765262943e-06,
+              "absolute_delta": 1.2628463765262943e-06,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.9855180022063831,
+              "reconstructed": 0.9855180373463549,
+              "delta": 3.513997182125195e-08,
+              "absolute_delta": 3.513997182125195e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.9589611747617245,
+              "reconstructed": 0.9589611671255374,
+              "delta": -7.63618712706915e-09,
+              "absolute_delta": 7.63618712706915e-09,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.874640674582174,
+              "reconstructed": 0.8746402673210236,
+              "delta": -4.0726115035916166e-07,
+              "absolute_delta": 4.0726115035916166e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": 0.6352525985981281,
+              "reconstructed": 0.6352511552110259,
+              "delta": -1.44338710217351e-06,
+              "absolute_delta": 1.44338710217351e-06,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.9859475767400854,
+              "reconstructed": 0.9859475718701329,
+              "delta": -4.869952441310943e-09,
+              "absolute_delta": 4.869952441310943e-09,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.9610307132657314,
+              "reconstructed": 0.9610305971200827,
+              "delta": -1.1614564876527567e-07,
+              "absolute_delta": 1.1614564876527567e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.8833299622057686,
+              "reconstructed": 0.8833295266732629,
+              "delta": -4.3553250572703206e-07,
+              "absolute_delta": 4.3553250572703206e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": 0.6645970902245121,
+              "reconstructed": 0.664595707478702,
+              "delta": -1.3827458100745815e-06,
+              "absolute_delta": 1.3827458100745815e-06,
+              "status": "ok"
+            }
+          ],
+          "summary": {
+            "valid_count": 12,
+            "mean_absolute_delta": 5.13385167678441e-07,
+            "max_absolute_delta": 1.44338710217351e-06
+          }
+        },
+        "spectral": {
+          "status": "ok",
+          "power_relative_l1": 1.2574176622163777e-05,
+          "power_relative_l2": 9.762234284345737e-06,
+          "fourier_relative_l2": 7.385515205247227e-05,
+          "original_power": 0.00581191651359399,
+          "reconstructed_power": 0.005811935976813049,
+          "absolute_power_l1": 7.308006475520115e-08,
+          "amplitude_scale": 2.8821277618408203,
+          "demean": true,
+          "window": "rectangular",
+          "fft_normalization": "forward: F=DFT(field/amplitude_scale)/N",
+          "hermitian_weights": "2 except last-axis DC and even-length Nyquist planes",
+          "radial_aggregation": "integrated power over all available modes in each shell",
+          "spacing": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency_unit": "cycles per spacing unit",
+          "fft_threads": 1,
+          "primary_buffer_bytes": 50882864,
+          "shells": [
+            {
+              "lower_frequency": 0.0,
+              "upper_frequency": 0.013531646934131853,
+              "mode_count": 19,
+              "original_power": 0.0006943566125481801,
+              "reconstructed_power": 0.0006943486349461402,
+              "relative_delta": -1.1489200067709847e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.013531646934131853,
+              "upper_frequency": 0.027063293868263706,
+              "mode_count": 152,
+              "original_power": 0.001327088770863477,
+              "reconstructed_power": 0.0013270898121080605,
+              "relative_delta": 7.846080883745663e-07,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.027063293868263706,
+              "upper_frequency": 0.04059494080239556,
+              "mode_count": 440,
+              "original_power": 0.001896423226199116,
+              "reconstructed_power": 0.0018964383069102087,
+              "relative_delta": 7.952186455179299e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.04059494080239556,
+              "upper_frequency": 0.05412658773652741,
+              "mode_count": 746,
+              "original_power": 0.0007916483356086725,
+              "reconstructed_power": 0.000791654564353568,
+              "relative_delta": 7.868070474406375e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.05412658773652741,
+              "upper_frequency": 0.06765823467065926,
+              "mode_count": 1396,
+              "original_power": 0.0003923057053449149,
+              "reconstructed_power": 0.0003923083988260028,
+              "relative_delta": 6.865770880234956e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.06765823467065926,
+              "upper_frequency": 0.08118988160479113,
+              "mode_count": 1968,
+              "original_power": 0.00017305965352918258,
+              "reconstructed_power": 0.0001730608554996368,
+              "relative_delta": 6.945411190302752e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.08118988160479113,
+              "upper_frequency": 0.09472152853892297,
+              "mode_count": 2776,
+              "original_power": 0.00010449416475826593,
+              "reconstructed_power": 0.00010449433620063555,
+              "relative_delta": 1.6406884539007638e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.09472152853892297,
+              "upper_frequency": 0.10825317547305482,
+              "mode_count": 3570,
+              "original_power": 5.8741918438294566e-05,
+              "reconstructed_power": 5.8742371552528674e-05,
+              "relative_delta": 7.713643785472113e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.10825317547305482,
+              "upper_frequency": 0.12178482240718667,
+              "mode_count": 4732,
+              "original_power": 5.508451307925751e-05,
+              "reconstructed_power": 5.508502477174426e-05,
+              "relative_delta": 9.289225921137274e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.12178482240718667,
+              "upper_frequency": 0.13531646934131852,
+              "mode_count": 6056,
+              "original_power": 3.871296771934263e-05,
+              "reconstructed_power": 3.871325896788339e-05,
+              "relative_delta": 7.523281161804685e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.13531646934131852,
+              "upper_frequency": 0.1488481162754504,
+              "mode_count": 7136,
+              "original_power": 3.218102356617647e-05,
+              "reconstructed_power": 3.218132199192277e-05,
+              "relative_delta": 9.273345382760156e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.1488481162754504,
+              "upper_frequency": 0.16237976320958225,
+              "mode_count": 8562,
+              "original_power": 2.130194641652578e-05,
+              "reconstructed_power": 2.1302197539386247e-05,
+              "relative_delta": 1.178872838918368e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.16237976320958225,
+              "upper_frequency": 0.1759114101437141,
+              "mode_count": 10352,
+              "original_power": 2.3531997266800307e-05,
+              "reconstructed_power": 2.3532138291229665e-05,
+              "relative_delta": 5.992879727065513e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.1759114101437141,
+              "upper_frequency": 0.18944305707784595,
+              "mode_count": 11908,
+              "original_power": 1.8907933114024742e-05,
+              "reconstructed_power": 1.8908198324962138e-05,
+              "relative_delta": 1.4026437252361835e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.18944305707784595,
+              "upper_frequency": 0.20297470401197779,
+              "mode_count": 13410,
+              "original_power": 1.2569941814910932e-05,
+              "reconstructed_power": 1.2570229220578511e-05,
+              "relative_delta": 2.286451853243092e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.20297470401197779,
+              "upper_frequency": 0.21650635094610965,
+              "mode_count": 15728,
+              "original_power": 1.6581488950232874e-05,
+              "reconstructed_power": 1.6581817415713322e-05,
+              "relative_delta": 1.9809166802450093e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.21650635094610965,
+              "upper_frequency": 0.2300379978802415,
+              "mode_count": 18008,
+              "original_power": 1.4278769003162868e-05,
+              "reconstructed_power": 1.4278334860081776e-05,
+              "relative_delta": -3.0404797570163507e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2300379978802415,
+              "upper_frequency": 0.24356964481437335,
+              "mode_count": 19972,
+              "original_power": 1.1639333912409375e-05,
+              "reconstructed_power": 1.1639052972402287e-05,
+              "relative_delta": -2.413712066359305e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.24356964481437335,
+              "upper_frequency": 0.2571012917485052,
+              "mode_count": 22466,
+              "original_power": 8.225991604404211e-06,
+              "reconstructed_power": 8.226256247625463e-06,
+              "relative_delta": 3.217158902891415e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2571012917485052,
+              "upper_frequency": 0.27063293868263705,
+              "mode_count": 24560,
+              "original_power": 1.1243060043205871e-05,
+              "reconstructed_power": 1.1243186700056723e-05,
+              "relative_delta": 1.1265336159817266e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.27063293868263705,
+              "upper_frequency": 0.28416458561676894,
+              "mode_count": 27544,
+              "original_power": 1.0133255547644631e-05,
+              "reconstructed_power": 1.0132549410974681e-05,
+              "relative_delta": -6.968507471558917e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.28416458561676894,
+              "upper_frequency": 0.2976962325509008,
+              "mode_count": 30264,
+              "original_power": 8.056203887673933e-06,
+              "reconstructed_power": 8.055919177231702e-06,
+              "relative_delta": -3.5340520945112186e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2976962325509008,
+              "upper_frequency": 0.3112278794850326,
+              "mode_count": 32966,
+              "original_power": 6.417615328889542e-06,
+              "reconstructed_power": 6.417445645061778e-06,
+              "relative_delta": -2.6440323869176582e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3112278794850326,
+              "upper_frequency": 0.3247595264191645,
+              "mode_count": 36000,
+              "original_power": 8.560261167240846e-06,
+              "reconstructed_power": 8.560182118343561e-06,
+              "relative_delta": -9.234402518912754e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3247595264191645,
+              "upper_frequency": 0.33829117335329634,
+              "mode_count": 39400,
+              "original_power": 7.924795011846222e-06,
+              "reconstructed_power": 7.92467569140773e-06,
+              "relative_delta": -1.505659620389563e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.33829117335329634,
+              "upper_frequency": 0.3518228202874282,
+              "mode_count": 42528,
+              "original_power": 6.225408836234162e-06,
+              "reconstructed_power": 6.2253812657394986e-06,
+              "relative_delta": -4.428704264887959e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3518228202874282,
+              "upper_frequency": 0.36535446722156,
+              "mode_count": 45638,
+              "original_power": 5.4560115436658196e-06,
+              "reconstructed_power": 5.455973384297712e-06,
+              "relative_delta": -6.994004283614868e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.36535446722156,
+              "upper_frequency": 0.3788861141556919,
+              "mode_count": 49624,
+              "original_power": 7.1062769071507865e-06,
+              "reconstructed_power": 7.106254577208237e-06,
+              "relative_delta": -3.1422843271130573e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3788861141556919,
+              "upper_frequency": 0.39241776108982374,
+              "mode_count": 52616,
+              "original_power": 6.5284596574211295e-06,
+              "reconstructed_power": 6.5283816180998364e-06,
+              "relative_delta": -1.1953711194998152e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.39241776108982374,
+              "upper_frequency": 0.40594940802395557,
+              "mode_count": 56826,
+              "original_power": 3.828016002125405e-06,
+              "reconstructed_power": 3.827989608827548e-06,
+              "relative_delta": -6.8947720809641285e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.40594940802395557,
+              "upper_frequency": 0.41948105495808746,
+              "mode_count": 60952,
+              "original_power": 6.535482014023738e-06,
+              "reconstructed_power": 6.535465661994729e-06,
+              "relative_delta": -2.502038713306978e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.41948105495808746,
+              "upper_frequency": 0.4330127018922193,
+              "mode_count": 64812,
+              "original_power": 6.333254894617442e-06,
+              "reconstructed_power": 6.333212577986583e-06,
+              "relative_delta": -6.68165604622303e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.4330127018922193,
+              "upper_frequency": 0.44654434882635113,
+              "mode_count": 68792,
+              "original_power": 5.700390361174864e-06,
+              "reconstructed_power": 5.700407549515695e-06,
+              "relative_delta": 3.0152918908804808e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.44654434882635113,
+              "upper_frequency": 0.460075995760483,
+              "mode_count": 73466,
+              "original_power": 3.7528634410774907e-06,
+              "reconstructed_power": 3.7528410397180626e-06,
+              "relative_delta": -5.969137907579585e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.460075995760483,
+              "upper_frequency": 0.47360764269461486,
+              "mode_count": 78240,
+              "original_power": 6.099026511187969e-06,
+              "reconstructed_power": 6.099040066233452e-06,
+              "relative_delta": 2.2224932878077554e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.47360764269461486,
+              "upper_frequency": 0.4871392896287467,
+              "mode_count": 81420,
+              "original_power": 6.010079443340819e-06,
+              "reconstructed_power": 6.010234440435592e-06,
+              "relative_delta": 2.5789525119218582e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.4871392896287467,
+              "upper_frequency": 0.5006709365628785,
+              "mode_count": 87177,
+              "original_power": 4.134636046247733e-06,
+              "reconstructed_power": 4.134564414637887e-06,
+              "relative_delta": -1.732476789856093e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5006709365628785,
+              "upper_frequency": 0.5142025834970104,
+              "mode_count": 88156,
+              "original_power": 5.706993120450214e-07,
+              "reconstructed_power": 5.707287150776939e-07,
+              "relative_delta": 5.152105855370208e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5142025834970104,
+              "upper_frequency": 0.5277342304311423,
+              "mode_count": 84768,
+              "original_power": 4.1091721280139156e-08,
+              "reconstructed_power": 4.109436067351805e-08,
+              "relative_delta": 6.42317551240909e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5277342304311423,
+              "upper_frequency": 0.5412658773652741,
+              "mode_count": 81436,
+              "original_power": 2.69757546857092e-08,
+              "reconstructed_power": 2.698069682063188e-08,
+              "relative_delta": 0.0001832065490015371,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5412658773652741,
+              "upper_frequency": 0.554797524299406,
+              "mode_count": 79284,
+              "original_power": 2.1539497725323896e-08,
+              "reconstructed_power": 2.1540042009196796e-08,
+              "relative_delta": 2.526910700705635e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.554797524299406,
+              "upper_frequency": 0.5683291712335379,
+              "mode_count": 75648,
+              "original_power": 1.6474931758442977e-08,
+              "reconstructed_power": 1.6475204782548795e-08,
+              "relative_delta": 1.6572093276052873e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5683291712335379,
+              "upper_frequency": 0.5818608181676697,
+              "mode_count": 72172,
+              "original_power": 1.3677411442576524e-08,
+              "reconstructed_power": 1.3676193559988078e-08,
+              "relative_delta": -8.904335396793612e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5818608181676697,
+              "upper_frequency": 0.5953924651018015,
+              "mode_count": 67252,
+              "original_power": 1.072045635508919e-08,
+              "reconstructed_power": 1.0721543962758604e-08,
+              "relative_delta": 0.00010145162047103264,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5953924651018015,
+              "upper_frequency": 0.6089241120359334,
+              "mode_count": 63732,
+              "original_power": 9.153264022053787e-09,
+              "reconstructed_power": 9.153601562410561e-09,
+              "relative_delta": 3.687650175508049e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6089241120359334,
+              "upper_frequency": 0.6224557589700652,
+              "mode_count": 58952,
+              "original_power": 7.367321275057104e-09,
+              "reconstructed_power": 7.3663322880017465e-09,
+              "relative_delta": -0.00013423970781694546,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6224557589700652,
+              "upper_frequency": 0.6359874059041971,
+              "mode_count": 54072,
+              "original_power": 5.797814920569056e-09,
+              "reconstructed_power": 5.7973384155784795e-09,
+              "relative_delta": -8.218699580869022e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6359874059041971,
+              "upper_frequency": 0.649519052838329,
+              "mode_count": 49368,
+              "original_power": 5.034100688061474e-09,
+              "reconstructed_power": 5.034210954090404e-09,
+              "relative_delta": 2.1903818728064545e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.649519052838329,
+              "upper_frequency": 0.6630506997724608,
+              "mode_count": 43240,
+              "original_power": 3.137292541701503e-09,
+              "reconstructed_power": 3.137470068283579e-09,
+              "relative_delta": 5.658591913779256e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6630506997724608,
+              "upper_frequency": 0.6765823467065927,
+              "mode_count": 38952,
+              "original_power": 3.0081144727705514e-09,
+              "reconstructed_power": 3.0083033457314365e-09,
+              "relative_delta": 6.278782360004151e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6765823467065927,
+              "upper_frequency": 0.6901139936407245,
+              "mode_count": 31932,
+              "original_power": 1.3788996861771645e-09,
+              "reconstructed_power": 1.3789268325345838e-09,
+              "relative_delta": 1.9686970481963662e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6901139936407245,
+              "upper_frequency": 0.7036456405748563,
+              "mode_count": 26692,
+              "original_power": 9.046459601229486e-10,
+              "reconstructed_power": 9.047876745245275e-10,
+              "relative_delta": 0.00015665178183039256,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7036456405748563,
+              "upper_frequency": 0.7171772875089882,
+              "mode_count": 20605,
+              "original_power": 8.248444983393093e-11,
+              "reconstructed_power": 8.262024163201885e-11,
+              "relative_delta": 0.0016462714894905429,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7171772875089882,
+              "upper_frequency": 0.73070893444312,
+              "mode_count": 15688,
+              "original_power": 2.541390459010862e-11,
+              "reconstructed_power": 2.5545928619092428e-11,
+              "relative_delta": 0.005194952570774665,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.73070893444312,
+              "upper_frequency": 0.7442405813772519,
+              "mode_count": 12320,
+              "original_power": 1.7660404716674586e-11,
+              "reconstructed_power": 1.7718764539191865e-11,
+              "relative_delta": 0.0033045574806208557,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7442405813772519,
+              "upper_frequency": 0.7577722283113838,
+              "mode_count": 9502,
+              "original_power": 1.2529796893416896e-11,
+              "reconstructed_power": 1.2557225262044973e-11,
+              "relative_delta": 0.0021890513358989983,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7577722283113838,
+              "upper_frequency": 0.7713038752455156,
+              "mode_count": 7230,
+              "original_power": 8.9378720057557e-12,
+              "reconstructed_power": 8.960739133747409e-12,
+              "relative_delta": 0.0025584532847397305,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7713038752455156,
+              "upper_frequency": 0.7848355221796475,
+              "mode_count": 5284,
+              "original_power": 6.197464152869779e-12,
+              "reconstructed_power": 6.212339472240602e-12,
+              "relative_delta": 0.0024002267708050744,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7848355221796475,
+              "upper_frequency": 0.7983671691137794,
+              "mode_count": 3632,
+              "original_power": 4.084166329794704e-12,
+              "reconstructed_power": 4.105956535024849e-12,
+              "relative_delta": 0.0053352883968465,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7983671691137794,
+              "upper_frequency": 0.8118988160479111,
+              "mode_count": 2388,
+              "original_power": 2.6010250379160232e-12,
+              "reconstructed_power": 2.6232883920776717e-12,
+              "relative_delta": 0.008559453998753592,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8118988160479111,
+              "upper_frequency": 0.825430462982043,
+              "mode_count": 1474,
+              "original_power": 1.5667165053766453e-12,
+              "reconstructed_power": 1.5809153700311598e-12,
+              "relative_delta": 0.009062816792819228,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.825430462982043,
+              "upper_frequency": 0.8389621099161749,
+              "mode_count": 782,
+              "original_power": 8.167842541333039e-13,
+              "reconstructed_power": 8.307220686965247e-13,
+              "relative_delta": 0.017064254719271373,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8389621099161749,
+              "upper_frequency": 0.8524937568503067,
+              "mode_count": 314,
+              "original_power": 3.2405983090956433e-13,
+              "reconstructed_power": 3.2807034026461464e-13,
+              "relative_delta": 0.012375829931755825,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8524937568503067,
+              "upper_frequency": 0.8660254037844386,
+              "mode_count": 55,
+              "original_power": 5.6401168812240195e-14,
+              "reconstructed_power": 5.273757032264417e-14,
+              "relative_delta": -0.06495607390322297,
+              "status": "ok"
+            }
+          ]
+        }
+      },
+      "analysis_seconds": 0.09608454402768984
+    },
+    "pressure.d64": {
+      "schema_version": 1,
+      "lfcquality_version": "0.1.0",
+      "shape": [
+        128,
+        128,
+        128
+      ],
+      "dtype": "<f8",
+      "backend": {
+        "abi_version": 1,
+        "openmp": 201511,
+        "fftw": true,
+        "fftw_threads": true,
+        "fftw_version": "fftw-3.3.11-sse2-avx",
+        "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+        "build": {
+          "source_sha256": "9f7d67c83feabef7c0125115482d2fca2ae46ca7edb9bbf793c1520bf9bc3c8d",
+          "compiler_version": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+          "compile_flags": [
+            "c++",
+            "-std=c++17",
+            "-O3",
+            "-fPIC",
+            "-shared",
+            "-pthread",
+            "-fno-fast-math",
+            "-ffp-contract=off",
+            "-fopenmp",
+            "-DLFQ_FFTW",
+            "-DLFQ_FFTW_THREADS",
+            "-I/data0/lb/lfcquality/.native-deps/include"
+          ],
+          "link_flags": [
+            "-L/data0/lb/lfcquality/.native-deps/lib",
+            "-Wl,-rpath,/data0/lb/lfcquality/.native-deps/lib",
+            "-lfftw3_threads",
+            "-lfftw3",
+            "-lm"
+          ],
+          "openmp": "required",
+          "fftw": "required",
+          "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+          "library": "/home/lb/.cache/lfcquality/Linux-x86_64/9f7d67c83feabef7c012/47fd2af247406833/liblfcquality.so"
+        },
+        "threads_requested": 8,
+        "omp_team_size_probe": 8
+      },
+      "metrics": {
+        "error": {
+          "rmse": 1.8861107918816683e-05,
+          "max_abs_error": 0.00022332996662066673,
+          "mean_error": 1.3370502980982238e-07,
+          "original_min": -0.893888542444774,
+          "original_max": 0.9719030119840539,
+          "data_range": 1.865791554428828,
+          "range_source": "original_max_minus_min"
+        },
+        "psnr": {
+          "value_db": 99.90591845774557,
+          "nrmse": 1.0108904113134228e-05,
+          "nrmse_status": "ok",
+          "status": "ok"
+        },
+        "pcc": {
+          "value": 0.9999999555111527,
+          "one_minus_pcc": 4.4488847272816656e-08,
+          "status": "ok"
+        },
+        "ssim": {
+          "value": 0.9999999283506655,
+          "window": [
+            7,
+            7,
+            7
+          ],
+          "stride": [
+            4,
+            4,
+            4
+          ],
+          "weights": "uniform",
+          "covariance": "population",
+          "boundary": "valid",
+          "data_range": 1.865791554428828,
+          "K1": 0.01,
+          "K2": 0.03,
+          "window_count": 29791,
+          "status": "ok"
+        },
+        "error_autocorrelation": {
+          "normalization": "global-centered lag-product sum / full-field centered-square sum",
+          "boundary": "valid",
+          "error_definition": "reconstructed - original",
+          "values": [
+            {
+              "axis": 0,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.24812542263394768,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.06332193829973591,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.01784197271301524,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.006210576988557681,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.26950143108253505,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.040637395548981596,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.05587298237544245,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.01797339766567906,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 1,
+              "pairs": 2080768,
+              "value": 0.2566933061162576,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 2,
+              "pairs": 2064384,
+              "value": -0.049557036054985966,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 4,
+              "pairs": 2031616,
+              "value": 0.04817324850542256,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 8,
+              "pairs": 1966080,
+              "value": 0.00798358805776363,
+              "status": "ok"
+            }
+          ]
+        },
+        "autocorrelation": {
+          "normalization": "global-centered lag-product sum / full-field centered-square sum",
+          "boundary": "valid",
+          "values": [
+            {
+              "axis": 0,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.9457063091488193,
+              "reconstructed": 0.945706295216026,
+              "delta": -1.3932793252457998e-08,
+              "absolute_delta": 1.3932793252457998e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.8465107235526278,
+              "reconstructed": 0.8465106359971031,
+              "delta": -8.755552471928496e-08,
+              "absolute_delta": 8.755552471928496e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.5698854972883862,
+              "reconstructed": 0.5698853712437711,
+              "delta": -1.26044615078591e-07,
+              "absolute_delta": 1.26044615078591e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 0,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": 0.07620556801430668,
+              "reconstructed": 0.07620469606391511,
+              "delta": -8.719503915705085e-07,
+              "absolute_delta": 8.719503915705085e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.9759372086552761,
+              "reconstructed": 0.9759371591476435,
+              "delta": -4.950763266009517e-08,
+              "absolute_delta": 4.950763266009517e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.9210562936530233,
+              "reconstructed": 0.9210561792107548,
+              "delta": -1.1444226855061856e-07,
+              "absolute_delta": 1.1444226855061856e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.7428303619672133,
+              "reconstructed": 0.742830084920627,
+              "delta": -2.7704658633886936e-07,
+              "absolute_delta": 2.7704658633886936e-07,
+              "status": "ok"
+            },
+            {
+              "axis": 1,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": 0.32499856847346,
+              "reconstructed": 0.32499863878098034,
+              "delta": 7.030752036119026e-08,
+              "absolute_delta": 7.030752036119026e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 1,
+              "pairs": 2080768,
+              "original": 0.955525105277169,
+              "reconstructed": 0.9555250997913809,
+              "delta": -5.4857881570669065e-09,
+              "absolute_delta": 5.4857881570669065e-09,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 2,
+              "pairs": 2064384,
+              "original": 0.8496386576479412,
+              "reconstructed": 0.8496386136361068,
+              "delta": -4.4011834399171335e-08,
+              "absolute_delta": 4.4011834399171335e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 4,
+              "pairs": 2031616,
+              "original": 0.5161066796365029,
+              "reconstructed": 0.5161065843171875,
+              "delta": -9.53193154407117e-08,
+              "absolute_delta": 9.53193154407117e-08,
+              "status": "ok"
+            },
+            {
+              "axis": 2,
+              "lag": 8,
+              "pairs": 1966080,
+              "original": -0.13013428890716905,
+              "reconstructed": -0.1301352354622486,
+              "delta": -9.465550795395572e-07,
+              "absolute_delta": 9.465550795395572e-07,
+              "status": "ok"
+            }
+          ],
+          "summary": {
+            "valid_count": 12,
+            "mean_absolute_delta": 2.2517994583901024e-07,
+            "max_absolute_delta": 9.465550795395572e-07
+          }
+        },
+        "spectral": {
+          "status": "ok",
+          "power_relative_l1": 6.23239995881536e-05,
+          "power_relative_l2": 2.572791305142613e-05,
+          "fourier_relative_l2": 0.0002982917614749704,
+          "original_power": 0.0042323755940353106,
+          "reconstructed_power": 0.0042323797039178785,
+          "absolute_power_l1": 2.6377857477956806e-07,
+          "amplitude_scale": 0.9719030119840539,
+          "demean": true,
+          "window": "rectangular",
+          "fft_normalization": "forward: F=DFT(field/amplitude_scale)/N",
+          "hermitian_weights": "2 except last-axis DC and even-length Nyquist planes",
+          "radial_aggregation": "integrated power over all available modes in each shell",
+          "spacing": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "frequency_unit": "cycles per spacing unit",
+          "fft_threads": 1,
+          "primary_buffer_bytes": 50882864,
+          "shells": [
+            {
+              "lower_frequency": 0.0,
+              "upper_frequency": 0.013531646934131853,
+              "mode_count": 19,
+              "original_power": 1.642093048236003e-05,
+              "reconstructed_power": 1.642074874316594e-05,
+              "relative_delta": -1.1067533248887806e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.013531646934131853,
+              "upper_frequency": 0.027063293868263706,
+              "mode_count": 152,
+              "original_power": 0.00013724772646404835,
+              "reconstructed_power": 0.00013724791065468803,
+              "relative_delta": 1.3420305343343443e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.027063293868263706,
+              "upper_frequency": 0.04059494080239556,
+              "mode_count": 440,
+              "original_power": 0.0004748002626937638,
+              "reconstructed_power": 0.00047479928023884643,
+              "relative_delta": -2.06919623804191e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.04059494080239556,
+              "upper_frequency": 0.05412658773652741,
+              "mode_count": 746,
+              "original_power": 0.0007910920635237578,
+              "reconstructed_power": 0.0007910938753797138,
+              "relative_delta": 2.290322504170182e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.05412658773652741,
+              "upper_frequency": 0.06765823467065926,
+              "mode_count": 1396,
+              "original_power": 0.0012571394755943465,
+              "reconstructed_power": 0.001257140065411587,
+              "relative_delta": 4.6917406705592667e-07,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.06765823467065926,
+              "upper_frequency": 0.08118988160479113,
+              "mode_count": 1968,
+              "original_power": 0.0007015773410363011,
+              "reconstructed_power": 0.0007015791851240194,
+              "relative_delta": 2.628488137363382e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.08118988160479113,
+              "upper_frequency": 0.09472152853892297,
+              "mode_count": 2776,
+              "original_power": 0.00031879636492145535,
+              "reconstructed_power": 0.0003187975603694586,
+              "relative_delta": 3.7498796560115766e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.09472152853892297,
+              "upper_frequency": 0.10825317547305482,
+              "mode_count": 3570,
+              "original_power": 0.0001700975545218113,
+              "reconstructed_power": 0.00017009777601404414,
+              "relative_delta": 1.3021482493497069e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.10825317547305482,
+              "upper_frequency": 0.12178482240718667,
+              "mode_count": 4732,
+              "original_power": 9.813878982053005e-05,
+              "reconstructed_power": 9.813881413971758e-05,
+              "relative_delta": 2.478040291446008e-07,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.12178482240718667,
+              "upper_frequency": 0.13531646934131852,
+              "mode_count": 6056,
+              "original_power": 6.364800118586306e-05,
+              "reconstructed_power": 6.364822033219652e-05,
+              "relative_delta": 3.443098437899312e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.13531646934131852,
+              "upper_frequency": 0.1488481162754504,
+              "mode_count": 7136,
+              "original_power": 3.791663742692823e-05,
+              "reconstructed_power": 3.791655855079953e-05,
+              "relative_delta": -2.080251152292769e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.1488481162754504,
+              "upper_frequency": 0.16237976320958225,
+              "mode_count": 8562,
+              "original_power": 2.5837924825650493e-05,
+              "reconstructed_power": 2.58372849271329e-05,
+              "relative_delta": -2.4765863431800153e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.16237976320958225,
+              "upper_frequency": 0.1759114101437141,
+              "mode_count": 10352,
+              "original_power": 1.8801043042988487e-05,
+              "reconstructed_power": 1.8800638459682793e-05,
+              "relative_delta": -2.1519194694066155e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.1759114101437141,
+              "upper_frequency": 0.18944305707784595,
+              "mode_count": 11908,
+              "original_power": 1.3822370024602036e-05,
+              "reconstructed_power": 1.3822257720677292e-05,
+              "relative_delta": -8.124795135981489e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.18944305707784595,
+              "upper_frequency": 0.20297470401197779,
+              "mode_count": 13410,
+              "original_power": 1.065437146074285e-05,
+              "reconstructed_power": 1.0654541499833788e-05,
+              "relative_delta": 1.5959560971258504e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.20297470401197779,
+              "upper_frequency": 0.21650635094610965,
+              "mode_count": 15728,
+              "original_power": 9.753238087172593e-06,
+              "reconstructed_power": 9.753618726008792e-06,
+              "relative_delta": 3.9026919346865226e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.21650635094610965,
+              "upper_frequency": 0.2300379978802415,
+              "mode_count": 18008,
+              "original_power": 7.848613855098414e-06,
+              "reconstructed_power": 7.848500046871572e-06,
+              "relative_delta": -1.4500423761802997e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2300379978802415,
+              "upper_frequency": 0.24356964481437335,
+              "mode_count": 19972,
+              "original_power": 6.733368651454434e-06,
+              "reconstructed_power": 6.733347235698328e-06,
+              "relative_delta": -3.1805411547329565e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.24356964481437335,
+              "upper_frequency": 0.2571012917485052,
+              "mode_count": 22466,
+              "original_power": 6.143981450818089e-06,
+              "reconstructed_power": 6.143789530739722e-06,
+              "relative_delta": -3.123708622881032e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2571012917485052,
+              "upper_frequency": 0.27063293868263705,
+              "mode_count": 24560,
+              "original_power": 5.760404144803255e-06,
+              "reconstructed_power": 5.760696770199453e-06,
+              "relative_delta": 5.0799455878879533e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.27063293868263705,
+              "upper_frequency": 0.28416458561676894,
+              "mode_count": 27544,
+              "original_power": 5.1245665276722615e-06,
+              "reconstructed_power": 5.124710356243111e-06,
+              "relative_delta": 2.8066485247700022e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.28416458561676894,
+              "upper_frequency": 0.2976962325509008,
+              "mode_count": 30264,
+              "original_power": 4.470824803385352e-06,
+              "reconstructed_power": 4.4705239914051715e-06,
+              "relative_delta": -6.728332990196574e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.2976962325509008,
+              "upper_frequency": 0.3112278794850326,
+              "mode_count": 32966,
+              "original_power": 4.5293956841218866e-06,
+              "reconstructed_power": 4.529423531019969e-06,
+              "relative_delta": 6.1480382868677594e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3112278794850326,
+              "upper_frequency": 0.3247595264191645,
+              "mode_count": 36000,
+              "original_power": 4.218430214945958e-06,
+              "reconstructed_power": 4.218408300240304e-06,
+              "relative_delta": -5.194990680620228e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3247595264191645,
+              "upper_frequency": 0.33829117335329634,
+              "mode_count": 39400,
+              "original_power": 3.8469303115881466e-06,
+              "reconstructed_power": 3.8470274863836845e-06,
+              "relative_delta": 2.5260347255369495e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.33829117335329634,
+              "upper_frequency": 0.3518228202874282,
+              "mode_count": 42528,
+              "original_power": 3.440254978968484e-06,
+              "reconstructed_power": 3.4402181945099717e-06,
+              "relative_delta": -1.0692364007141778e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3518228202874282,
+              "upper_frequency": 0.36535446722156,
+              "mode_count": 45638,
+              "original_power": 3.7588540540347018e-06,
+              "reconstructed_power": 3.7588325565145927e-06,
+              "relative_delta": -5.719168608320533e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.36535446722156,
+              "upper_frequency": 0.3788861141556919,
+              "mode_count": 49624,
+              "original_power": 3.42450390446552e-06,
+              "reconstructed_power": 3.424528422067648e-06,
+              "relative_delta": 7.159460993953116e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.3788861141556919,
+              "upper_frequency": 0.39241776108982374,
+              "mode_count": 52616,
+              "original_power": 3.1067040324438555e-06,
+              "reconstructed_power": 3.106757928174529e-06,
+              "relative_delta": 1.734820250355124e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.39241776108982374,
+              "upper_frequency": 0.40594940802395557,
+              "mode_count": 56826,
+              "original_power": 3.008799112960642e-06,
+              "reconstructed_power": 3.00873863455132e-06,
+              "relative_delta": -2.0100514209005752e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.40594940802395557,
+              "upper_frequency": 0.41948105495808746,
+              "mode_count": 60952,
+              "original_power": 3.37734741178658e-06,
+              "reconstructed_power": 3.3773160386342936e-06,
+              "relative_delta": -9.28928785267031e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.41948105495808746,
+              "upper_frequency": 0.4330127018922193,
+              "mode_count": 64812,
+              "original_power": 2.9840201575954014e-06,
+              "reconstructed_power": 2.9840757452704665e-06,
+              "relative_delta": 1.8628451595272616e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.4330127018922193,
+              "upper_frequency": 0.44654434882635113,
+              "mode_count": 68792,
+              "original_power": 2.709585174549688e-06,
+              "reconstructed_power": 2.709549838038841e-06,
+              "relative_delta": -1.3041299154950106e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.44654434882635113,
+              "upper_frequency": 0.460075995760483,
+              "mode_count": 73466,
+              "original_power": 2.850788403215802e-06,
+              "reconstructed_power": 2.850728265613091e-06,
+              "relative_delta": -2.1095077643449244e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.460075995760483,
+              "upper_frequency": 0.47360764269461486,
+              "mode_count": 78240,
+              "original_power": 3.1272693308703247e-06,
+              "reconstructed_power": 3.1273235544587613e-06,
+              "relative_delta": 1.7338956994000534e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.47360764269461486,
+              "upper_frequency": 0.4871392896287467,
+              "mode_count": 81420,
+              "original_power": 2.7817018874061846e-06,
+              "reconstructed_power": 2.7817663172946073e-06,
+              "relative_delta": 2.3162039294834567e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.4871392896287467,
+              "upper_frequency": 0.5006709365628785,
+              "mode_count": 87177,
+              "original_power": 2.37851429071628e-06,
+              "reconstructed_power": 2.3783949002303067e-06,
+              "relative_delta": -5.0195404097144164e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5006709365628785,
+              "upper_frequency": 0.5142025834970104,
+              "mode_count": 88156,
+              "original_power": 7.942275668589452e-07,
+              "reconstructed_power": 7.942311817192489e-07,
+              "relative_delta": 4.551416312590453e-06,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5142025834970104,
+              "upper_frequency": 0.5277342304311423,
+              "mode_count": 84768,
+              "original_power": 5.677472381158865e-08,
+              "reconstructed_power": 5.679177040830172e-08,
+              "relative_delta": 0.0003002497514499056,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5277342304311423,
+              "upper_frequency": 0.5412658773652741,
+              "mode_count": 81436,
+              "original_power": 3.458336945341153e-08,
+              "reconstructed_power": 3.45941217556712e-08,
+              "relative_delta": 0.00031090962013273406,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5412658773652741,
+              "upper_frequency": 0.554797524299406,
+              "mode_count": 79284,
+              "original_power": 2.652383885929827e-08,
+              "reconstructed_power": 2.6522373374284454e-08,
+              "relative_delta": -5.5251618047810294e-05,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.554797524299406,
+              "upper_frequency": 0.5683291712335379,
+              "mode_count": 75648,
+              "original_power": 2.0559914520598413e-08,
+              "reconstructed_power": 2.056410940855747e-08,
+              "relative_delta": 0.00020403236379487274,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5683291712335379,
+              "upper_frequency": 0.5818608181676697,
+              "mode_count": 72172,
+              "original_power": 1.656235240606926e-08,
+              "reconstructed_power": 1.6567640265368257e-08,
+              "relative_delta": 0.0003192698216625479,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5818608181676697,
+              "upper_frequency": 0.5953924651018015,
+              "mode_count": 67252,
+              "original_power": 1.3286716634623502e-08,
+              "reconstructed_power": 1.3292695009354537e-08,
+              "relative_delta": 0.0004499512479596513,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.5953924651018015,
+              "upper_frequency": 0.6089241120359334,
+              "mode_count": 63732,
+              "original_power": 1.111720127079277e-08,
+              "reconstructed_power": 1.1123685925304548e-08,
+              "relative_delta": 0.0005832991913905027,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6089241120359334,
+              "upper_frequency": 0.6224557589700652,
+              "mode_count": 58952,
+              "original_power": 9.15677948171029e-09,
+              "reconstructed_power": 9.160240840890914e-09,
+              "relative_delta": 0.00037801054262989487,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6224557589700652,
+              "upper_frequency": 0.6359874059041971,
+              "mode_count": 54072,
+              "original_power": 7.144226545115756e-09,
+              "reconstructed_power": 7.150124766156183e-09,
+              "relative_delta": 0.0008255926660751,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6359874059041971,
+              "upper_frequency": 0.649519052838329,
+              "mode_count": 49368,
+              "original_power": 6.011519696412352e-09,
+              "reconstructed_power": 6.013520994878635e-09,
+              "relative_delta": 0.0003329105729251181,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.649519052838329,
+              "upper_frequency": 0.6630506997724608,
+              "mode_count": 43240,
+              "original_power": 4.064140112251872e-09,
+              "reconstructed_power": 4.065442291507196e-09,
+              "relative_delta": 0.0003204070773541083,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6630506997724608,
+              "upper_frequency": 0.6765823467065927,
+              "mode_count": 38952,
+              "original_power": 3.5276335421543156e-09,
+              "reconstructed_power": 3.529621919578621e-09,
+              "relative_delta": 0.0005636575910010753,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6765823467065927,
+              "upper_frequency": 0.6901139936407245,
+              "mode_count": 31932,
+              "original_power": 1.79203189808568e-09,
+              "reconstructed_power": 1.7929521679749908e-09,
+              "relative_delta": 0.0005135343239670518,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.6901139936407245,
+              "upper_frequency": 0.7036456405748563,
+              "mode_count": 26692,
+              "original_power": 1.0709306833236757e-09,
+              "reconstructed_power": 1.070223567880567e-09,
+              "relative_delta": -0.0006602812433331905,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7036456405748563,
+              "upper_frequency": 0.7171772875089882,
+              "mode_count": 20605,
+              "original_power": 1.3530412957789385e-10,
+              "reconstructed_power": 1.3605039804647604e-10,
+              "relative_delta": 0.005515489223502006,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7171772875089882,
+              "upper_frequency": 0.73070893444312,
+              "mode_count": 15688,
+              "original_power": 3.270614351934393e-11,
+              "reconstructed_power": 3.3327415668445936e-11,
+              "relative_delta": 0.018995579492108425,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.73070893444312,
+              "upper_frequency": 0.7442405813772519,
+              "mode_count": 12320,
+              "original_power": 2.2531144190924633e-11,
+              "reconstructed_power": 2.290480892724634e-11,
+              "relative_delta": 0.016584365763023114,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7442405813772519,
+              "upper_frequency": 0.7577722283113838,
+              "mode_count": 9502,
+              "original_power": 1.5927954407899334e-11,
+              "reconstructed_power": 1.6189864234390855e-11,
+              "relative_delta": 0.016443406339839126,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7577722283113838,
+              "upper_frequency": 0.7713038752455156,
+              "mode_count": 7230,
+              "original_power": 1.1336687545295826e-11,
+              "reconstructed_power": 1.159217677858707e-11,
+              "relative_delta": 0.0225364977441986,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7713038752455156,
+              "upper_frequency": 0.7848355221796475,
+              "mode_count": 5284,
+              "original_power": 7.847437767469242e-12,
+              "reconstructed_power": 8.042617670398897e-12,
+              "relative_delta": 0.024871800033732495,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7848355221796475,
+              "upper_frequency": 0.7983671691137794,
+              "mode_count": 3632,
+              "original_power": 5.1650747897263266e-12,
+              "reconstructed_power": 5.235759796095543e-12,
+              "relative_delta": 0.013685185451682798,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.7983671691137794,
+              "upper_frequency": 0.8118988160479111,
+              "mode_count": 2388,
+              "original_power": 3.2863897606456638e-12,
+              "reconstructed_power": 3.3533431767982233e-12,
+              "relative_delta": 0.020372938400162705,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8118988160479111,
+              "upper_frequency": 0.825430462982043,
+              "mode_count": 1474,
+              "original_power": 1.9783215242644378e-12,
+              "reconstructed_power": 2.0180312591821107e-12,
+              "relative_delta": 0.020072437382208336,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.825430462982043,
+              "upper_frequency": 0.8389621099161749,
+              "mode_count": 782,
+              "original_power": 1.0309458321146202e-12,
+              "reconstructed_power": 1.0619959684059662e-12,
+              "relative_delta": 0.03011810642626841,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8389621099161749,
+              "upper_frequency": 0.8524937568503067,
+              "mode_count": 314,
+              "original_power": 4.089154972501331e-13,
+              "reconstructed_power": 4.2536318985529404e-13,
+              "relative_delta": 0.040222717690496144,
+              "status": "ok"
+            },
+            {
+              "lower_frequency": 0.8524937568503067,
+              "upper_frequency": 0.8660254037844386,
+              "mode_count": 55,
+              "original_power": 7.11481104527987e-14,
+              "reconstructed_power": 7.597034179808038e-14,
+              "relative_delta": 0.06777736351102188,
+              "status": "ok"
+            }
+          ]
+        }
+      },
+      "analysis_seconds": 0.08456532697891816
+    }
+  },
+  "cross_variable_correlation": {
+    "field_names": [
+      "density.d64",
+      "pressure.d64"
+    ],
+    "original": [
+      [
+        1.0,
+        -0.04629299491185486
+      ],
+      [
+        -0.04629299491185486,
+        1.0
+      ]
+    ],
+    "reconstructed": [
+      [
+        1.0,
+        -0.04629342996209406
+      ],
+      [
+        -0.04629342996209406,
+        1.0
+      ]
+    ],
+    "delta": [
+      [
+        0.0,
+        -4.350502392017064e-07
+      ],
+      [
+        -4.350502392017064e-07,
+        0.0
+      ]
+    ],
+    "summary": {
+      "valid_count": 1,
+      "mean_absolute_delta": 4.350502392017064e-07,
+      "max_absolute_delta": 4.350502392017064e-07,
+      "total_off_diagonal_pairs": 1
+    },
+    "undefined_entry": "zero variance in either variable",
+    "alignment": "caller-supplied co-located grid and time"
+  },
+  "validation": {
+    "host": "HPDPS-8",
+    "cpu_affinity": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "purpose": "real-data quality integration check; not codec performance",
+    "inputs": {
+      "density.d64": {
+        "source": "/data0/lb/sdrbench/Miranda/density.d64",
+        "full_shape": [
+          256,
+          384,
+          384
+        ],
+        "crop_shape": [
+          128,
+          128,
+          128
+        ],
+        "crop_origin": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.001,
+        "absolute_bound": 0.0018821283716737274,
+        "crop_sha256": "9c21ea04a7cd3addf17571c192614ba86b5c8d3e5f437e6b3d14e9b5f18c1fa4",
+        "reconstructed_sha256": "9ee71f0016bd35565ffa570d841fed8f1839b7862708397d4316409562f8316d"
+      },
+      "pressure.d64": {
+        "source": "/data0/lb/sdrbench/Miranda/pressure.d64",
+        "full_shape": [
+          256,
+          384,
+          384
+        ],
+        "crop_shape": [
+          128,
+          128,
+          128
+        ],
+        "crop_origin": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.001,
+        "absolute_bound": 0.001865791554428828,
+        "crop_sha256": "67e867074838e4d5cf120e6098b9b6d2857215fab3cca5f295b906265ff68f9d",
+        "reconstructed_sha256": "d41d8f1361a24ea5478fcd923180679ce25eaaff6520df691fc23e78f3aaaea3"
+      }
+    },
+    "codec": "zfpy",
+    "codec_version": "1.0.1.post0",
+    "equal_metrics_at_threads": [
+      1,
+      8
+    ]
+  }
+}

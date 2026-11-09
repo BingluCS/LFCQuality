@@ -1,0 +1,9 @@
+include CMakeLists.txt
+recursive-include src/lfcquality/native *.cpp *.h
+recursive-include docs *.md
+recursive-include examples *.py *.cpp *.json
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include scripts *.sh
+recursive-include integrations *.patch
+recursive-include validation *.md *.json *.txt *.xml

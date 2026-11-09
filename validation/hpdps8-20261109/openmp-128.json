@@ -1,0 +1,254 @@
+{
+  "shape": [
+    128,
+    128,
+    128
+  ],
+  "dtype": "float32",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "host": "HPDPS-8",
+  "timestamp_utc": "2026-11-09T05:29:13.620999+00:00",
+  "cpu_affinity": [
+    32
+  ],
+  "thread_environment": {
+    "OMP_PROC_BIND": "close",
+    "OMP_PLACES": "cores",
+    "OMP_WAIT_POLICY": "PASSIVE",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "backend": {
+    "abi_version": 1,
+    "openmp": 201511,
+    "fftw": true,
+    "fftw_threads": true,
+    "fftw_version": "fftw-3.3.11-sse2-avx",
+    "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+    "build": {
+      "source_sha256": "9f7d67c83feabef7c0125115482d2fca2ae46ca7edb9bbf793c1520bf9bc3c8d",
+      "compiler_version": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+      "compile_flags": [
+        "c++",
+        "-std=c++17",
+        "-O3",
+        "-fPIC",
+        "-shared",
+        "-pthread",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fopenmp",
+        "-DLFQ_FFTW",
+        "-DLFQ_FFTW_THREADS",
+        "-I/data0/lb/lfcquality/.native-deps/include"
+      ],
+      "link_flags": [
+        "-L/data0/lb/lfcquality/.native-deps/lib",
+        "-Wl,-rpath,/data0/lb/lfcquality/.native-deps/lib",
+        "-lfftw3_threads",
+        "-lfftw3",
+        "-lm"
+      ],
+      "openmp": "required",
+      "fftw": "required",
+      "library_sha256": "8822dda81b0dc17fceac99896ccfbfcc80d9c3fd68669feb4659af1818d9abbd",
+      "library": "/home/lb/.cache/lfcquality/Linux-x86_64/9f7d67c83feabef7c012/47fd2af247406833/liblfcquality.so"
+    },
+    "threads_requested": 2,
+    "omp_team_size_probe": 2
+  },
+  "protocol": "one warmup per randomized group/thread case; API wall time including mandatory basic scans; input creation excluded; FFTW threads fixed at 1",
+  "measurements": [
+    {
+      "group": "basic",
+      "threads": 1,
+      "seconds": [
+        0.023846967960707843,
+        0.023707189015112817,
+        0.02374402596615255
+      ],
+      "median_seconds": 0.02374402596615255,
+      "team_probe": 1,
+      "speedup_vs_one": 1.0
+    },
+    {
+      "group": "basic",
+      "threads": 2,
+      "seconds": [
+        0.015370806970167905,
+        0.01481426804093644,
+        0.015287957969121635
+      ],
+      "median_seconds": 0.015287957969121635,
+      "team_probe": 2,
+      "speedup_vs_one": 1.553119521528666
+    },
+    {
+      "group": "basic",
+      "threads": 4,
+      "seconds": [
+        0.008746928011532873,
+        0.008718148979824036,
+        0.008741936995647848
+      ],
+      "median_seconds": 0.008741936995647848,
+      "team_probe": 4,
+      "speedup_vs_one": 2.716105821624367
+    },
+    {
+      "group": "basic",
+      "threads": 8,
+      "seconds": [
+        0.004620396008249372,
+        0.004585312970448285,
+        0.004587731033097953
+      ],
+      "median_seconds": 0.004587731033097953,
+      "team_probe": 8,
+      "speedup_vs_one": 5.175548826828007
+    },
+    {
+      "group": "acf",
+      "threads": 1,
+      "seconds": [
+        0.21387106098700315,
+        0.21404542797245085,
+        0.21395352500258014
+      ],
+      "median_seconds": 0.21395352500258014,
+      "team_probe": 1,
+      "speedup_vs_one": 1.0
+    },
+    {
+      "group": "acf",
+      "threads": 2,
+      "seconds": [
+        0.12995084701105952,
+        0.1316067439620383,
+        0.13020150602096692
+      ],
+      "median_seconds": 0.13020150602096692,
+      "team_probe": 2,
+      "speedup_vs_one": 1.6432492337540725
+    },
+    {
+      "group": "acf",
+      "threads": 4,
+      "seconds": [
+        0.07107796799391508,
+        0.07468079501995817,
+        0.07142420497257262
+      ],
+      "median_seconds": 0.07142420497257262,
+      "team_probe": 4,
+      "speedup_vs_one": 2.99553246808613
+    },
+    {
+      "group": "acf",
+      "threads": 8,
+      "seconds": [
+        0.03565680899191648,
+        0.03565392701420933,
+        0.04427162394858897
+      ],
+      "median_seconds": 0.03565680899191648,
+      "team_probe": 8,
+      "speedup_vs_one": 6.000355361330402
+    },
+    {
+      "group": "ssim",
+      "threads": 1,
+      "seconds": [
+        0.08597236301284283,
+        0.08599133201641962,
+        0.08593041397398338
+      ],
+      "median_seconds": 0.08597236301284283,
+      "team_probe": 1,
+      "speedup_vs_one": 1.0
+    },
+    {
+      "group": "ssim",
+      "threads": 2,
+      "seconds": [
+        0.046694883960299194,
+        0.04695052502211183,
+        0.04859985498478636
+      ],
+      "median_seconds": 0.04695052502211183,
+      "team_probe": 2,
+      "speedup_vs_one": 1.8311267652992862
+    },
+    {
+      "group": "ssim",
+      "threads": 4,
+      "seconds": [
+        0.028749552031513304,
+        0.028770281991455704,
+        0.03789378999499604
+      ],
+      "median_seconds": 0.028770281991455704,
+      "team_probe": 4,
+      "speedup_vs_one": 2.988234979357352
+    },
+    {
+      "group": "ssim",
+      "threads": 8,
+      "seconds": [
+        0.01469656202243641,
+        0.019077599048614502,
+        0.014693502977024764
+      ],
+      "median_seconds": 0.01469656202243641,
+      "team_probe": 8,
+      "speedup_vs_one": 5.849828203466477
+    },
+    {
+      "group": "spectral",
+      "threads": 1,
+      "seconds": [
+        0.10799394000787288,
+        0.10798051202436909,
+        0.10790325596462935
+      ],
+      "median_seconds": 0.10798051202436909,
+      "team_probe": 1,
+      "speedup_vs_one": 1.0
+    },
+    {
+      "group": "spectral",
+      "threads": 2,
+      "seconds": [
+        0.0928548609954305,
+        0.07990504096960649,
+        0.07868477998999879
+      ],
+      "median_seconds": 0.07990504096960649,
+      "team_probe": 2,
+      "speedup_vs_one": 1.3513604487787156
+    },
+    {
+      "group": "spectral",
+      "threads": 4,
+      "seconds": [
+        0.059180415992159396,
+        0.06233239604625851,
+        0.05775688396533951
+      ],
+      "median_seconds": 0.059180415992159396,
+      "team_probe": 4,
+      "speedup_vs_one": 1.8245987327746234
+    },
+    {
+      "group": "spectral",
+      "threads": 8,
+      "seconds": [
+        0.04989039700012654,
+        0.05246925901155919,
+        0.045671959000173956
+      ],
+      "median_seconds": 0.04989039700012654,
+      "team_probe": 8,
+      "speedup_vs_one": 2.164354635704647
+    }
+  ]
+}

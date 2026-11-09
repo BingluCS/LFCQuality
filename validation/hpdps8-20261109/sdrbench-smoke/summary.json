@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "NYX",
+    "dtype": "float32",
+    "fields": 2,
+    "crop_shape": [
+      128,
+      128,
+      128
+    ],
+    "metrics_equal": true,
+    "cross_variable_delta": 0.00015693650326356612
+  },
+  {
+    "dataset": "Miranda",
+    "dtype": "float64",
+    "fields": 2,
+    "crop_shape": [
+      128,
+      128,
+      128
+    ],
+    "metrics_equal": true,
+    "cross_variable_delta": 4.350502392017064e-07
+  }
+]

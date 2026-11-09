@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /data0/lb/lfcquality/build
+Test project /data0/lb/lfcquality/build
+    Start 1: native_example
+1/1 Test #1: native_example ...................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec

@@ -1,0 +1,9 @@
+{
+  "grid_id": "replace-with-common-grid",
+  "time_id": "replace-with-common-time",
+  "options": {"threads": 8, "fft_threads": 4, "ssim_window": 7, "ssim_stride": 4},
+  "fields": [
+    {"name": "density", "original": "original/density.npy", "reconstructed": "reconstructed/density.npy"},
+    {"name": "temperature", "original": "original/temperature.npy", "reconstructed": "reconstructed/temperature.npy"}
+  ]
+}

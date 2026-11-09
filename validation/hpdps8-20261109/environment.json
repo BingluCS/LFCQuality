@@ -1,0 +1,15 @@
+{
+  "host": "HPDPS-8",
+  "python": "3.13.13",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "versions": {
+    "numpy": "2.4.6",
+    "pytest": "9.2.0",
+    "scipy": "1.18.1",
+    "scikit-image": "0.26.0",
+    "pysz": "1.1.0",
+    "zfpy": "1.0.1.post0"
+  },
+  "validation_binding": "CPUs 32-39, NUMA node 1",
+  "concurrent_workload": "Existing single-thread SDRBench run on CPU 2, socket 0; timings are preliminary observations, not dedicated-machine measurements."
+}

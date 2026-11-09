@@ -1,0 +1,341 @@
+diff --git a/README.md b/README.md
+index 5999e45..ca67f32 100644
+--- a/README.md
++++ b/README.md
+@@ -145,6 +145,43 @@ class MyCompressor(Compressor):
+ 
+ 当前没有自动续跑、GPU 执行或应用领域质量指标。大数组的完整载入、复制和误差分析会消耗额外内存；规模化运行前应评估内存需求。正式比较时应固定线程和机器状态，核对字段布局、算法设置和版本。
+ 
++## 可注册的质量指标
++
++`lfcbench list-metrics` 列出可选的质量分析插件。它们通过
++`lfcbenchmark.metrics` Python entry point 自动发现，也可以直接注册：
++
++```python
++from lfcbench import register_metric
++
++@register_metric("my_lab.quality")
++def quality(original, reconstructed, **options):
++    # 输入是只读 NumPy 视图，返回可用严格 JSON 序列化的 dict。
++    return {"custom_score": 1.0}
++```
++
++独立的 **LFCQuality** 包提供 C++ / OpenMP / FFTW 实现的 PSNR、SSIM、PCC、
++误差自相关、场自相关差异和频谱误差。安装它、编译原生库之后，在 YAML 中加入：
++
++```yaml
++quality_metrics:
++  - name: lfcquality
++    options:
++      metrics: [psnr, pcc, ssim, error_autocorrelation, autocorrelation, spectral]
++      threads: 8
++      fft_threads: 4
++      ssim_window: 7
++      ssim_stride: 4
++```
++
++Python API 的 `benchmark(..., quality_metrics=[{"name": "lfcquality", "options": {"threads": 8}}])`
++采用同样配置。结果保存在 `metrics.quality.lfcquality`，仅在正式测量中调用，
++位于压缩和解压计时之外。默认不运行插件；原有配置保持兼容。分析失败会明确
++报错，不生成伪造的分数。多个变量的相关性变化需向 LFCQuality 的 `analyze_fields`
++提供同一网格、同一时刻的多组原始场和重建场。
++
++分析线程不会设置压缩器线程数，但多线程分析仍可能影响后续实验的机器状态；
++正式吞吐量实验建议单独运行分析，或在启动进程前配置 `OMP_WAIT_POLICY=PASSIVE`。
++
+ ## 测试
+ 
+ ```bash
+diff --git a/src/lfcbench/__init__.py b/src/lfcbench/__init__.py
+index 6fa6d23..be97d98 100644
+--- a/src/lfcbench/__init__.py
++++ b/src/lfcbench/__init__.py
+@@ -4,5 +4,6 @@ __version__ = "0.1.0"
+ from .api import AbsoluteError, Capabilities, CompressedData, Compressor
+ from .registry import register_compressor
+ from .benchmark import benchmark
++from .metric_registry import register_metric
+ 
+-__all__ = ["AbsoluteError", "Capabilities", "CompressedData", "Compressor", "register_compressor", "benchmark"]
++__all__ = ["AbsoluteError", "Capabilities", "CompressedData", "Compressor", "register_compressor", "register_metric", "benchmark"]
+diff --git a/src/lfcbench/benchmark.py b/src/lfcbench/benchmark.py
+index 67c7aa6..8342f9e 100644
+--- a/src/lfcbench/benchmark.py
++++ b/src/lfcbench/benchmark.py
+@@ -7,7 +7,7 @@ from .registry import Registry
+ from .runner import run_trial
+ 
+ 
+-def benchmark(data, *, compressor: str, error: AbsoluteError, options=None):
++def benchmark(data, *, compressor: str, error: AbsoluteError, options=None, quality_metrics=None):
+     """Run one checked CPU trial; durations are adapter wall-clock times.
+ 
+     For repetitions, provenance, and on-disk results use the YAML CLI runner.
+@@ -25,7 +25,7 @@ def benchmark(data, *, compressor: str, error: AbsoluteError, options=None):
+     if not isinstance(options, dict):
+         raise TypeError("options must be a dictionary")
+     array = np.ascontiguousarray(data)
+-    info, metrics = run_trial(Registry(), compressor, options, array, error)
++    info, metrics = run_trial(Registry(), compressor, options, array, error, quality_metrics=quality_metrics)
+     return {"status": "ok" if metrics["bound_satisfied"] else "violation",
+             "compressor": compressor, "compressor_version": info,
+             "absolute_error_bound": error.value, "shape": list(array.shape),
+diff --git a/src/lfcbench/cli.py b/src/lfcbench/cli.py
+index 97dfa53..0e37a4e 100644
+--- a/src/lfcbench/cli.py
++++ b/src/lfcbench/cli.py
+@@ -20,6 +20,7 @@ def parser():
+     p.add_argument("--plugin", action="append", default=[], metavar="MODULE", help="import a local module that registers compressors; can repeat")
+     sub = p.add_subparsers(dest="command", required=True)
+     sub.add_parser("list", help="list registered compressors and availability")
++    sub.add_parser("list-metrics", help="list optional registered post-decode quality metrics")
+     inspect = sub.add_parser("inspect", help="show the capabilities of a compressor")
+     inspect.add_argument("name")
+     validate = sub.add_parser("validate", help="run small round-trip and error-bound checks")
+@@ -41,6 +42,12 @@ def main(argv=None):
+     try:
+         import_local_plugins(args.plugin)
+         registry = Registry()
++        if args.command == "list-metrics":
++            from .metric_registry import MetricRegistry
++            metric_registry = MetricRegistry()
++            for name in metric_registry.names():
++                print(f"{name}\t{', '.join(metric_registry.origins(name))}")
++            return 0
+         if args.command == "list":
+             for name in registry.names():
+                 try:
+diff --git a/src/lfcbench/runner.py b/src/lfcbench/runner.py
+index cb9d2a7..9f9d0e7 100644
+--- a/src/lfcbench/runner.py
++++ b/src/lfcbench/runner.py
+@@ -18,6 +18,7 @@ from . import __version__
+ from .api import AbsoluteError, Capabilities, pack_artifact, unpack_artifact
+ from .datasets import load_dataset
+ from .metrics import evaluate
++from .metric_registry import evaluate_registered, validate_metric_specs
+ 
+ 
+ def environment():
+@@ -44,7 +45,7 @@ def load_config(path: Path) -> dict:
+     config = yaml.safe_load(path.read_text())
+     if not isinstance(config, dict):
+         raise ValueError("experiment config must be a YAML mapping")
+-    allowed = {"datasets", "compressors", "error_bounds", "warmups", "repetitions", "seed"}
++    allowed = {"datasets", "compressors", "error_bounds", "warmups", "repetitions", "seed", "quality_metrics"}
+     if set(config) - allowed:
+         raise ValueError(f"unknown config keys: {sorted(set(config) - allowed)}")
+     for key in ("datasets", "compressors", "error_bounds"):
+@@ -69,6 +70,7 @@ def load_config(path: Path) -> dict:
+     config["warmups"] = _positive_int(config.get("warmups", 1), "warmups", allow_zero=True)
+     config["repetitions"] = _positive_int(config.get("repetitions", 3), "repetitions")
+     config["seed"] = _positive_int(config.get("seed", 42), "seed", allow_zero=True)
++    config["quality_metrics"] = validate_metric_specs(config.get("quality_metrics"))
+     return config
+ 
+ 
+@@ -80,7 +82,8 @@ def absolute_bound(spec, data_info):
+     return AbsoluteError(spec["value"] * data_info["value_range"])
+ 
+ 
+-def run_trial(registry, compressor_name, options, array, error):
++def run_trial(registry, compressor_name, options, array, error, *, quality_metrics=None):
++    quality_metrics = validate_metric_specs(quality_metrics)
+     encoder = registry.create(compressor_name)
+     caps = encoder.capabilities()
+     if not isinstance(caps, Capabilities):
+@@ -119,6 +122,8 @@ def run_trial(registry, compressor_name, options, array, error):
+                     "compress_seconds": cseconds, "decompress_seconds": dseconds,
+                     "compress_mib_per_second": array.nbytes / (1024**2) / cseconds,
+                     "decompress_mib_per_second": array.nbytes / (1024**2) / dseconds})
++    if quality_metrics:
++        metrics["quality"] = evaluate_registered(array, reconstructed, quality_metrics)
+     return info, metrics
+ 
+ 
+@@ -167,7 +172,7 @@ def run_config(path: Path, output: Path, registry):
+                     continue
+                 for index in range(config["repetitions"]):
+                     try:
+-                        info, metrics = run_trial(registry, name, options, array, abs_error)
++                        info, metrics = run_trial(registry, name, options, array, abs_error, quality_metrics=config["quality_metrics"])
+                         status = "ok" if metrics["bound_satisfied"] else "violation"
+                         write({**base, "status": status, "stage": "measured", "repeat": index + 1,
+                                "compressor_version": info, "metrics": metrics})
+diff --git a/src/lfcbench/metric_registry.py b/src/lfcbench/metric_registry.py
+new file mode 100644
+--- /dev/null
++++ b/src/lfcbench/metric_registry.py
+@@ -0,0 +1,92 @@
++"""Optional post-decode metrics, registered locally or by installed entry points."""
++from __future__ import annotations
++
++from importlib.metadata import entry_points
++import json
++import re
++
++ENTRY_POINT_GROUP = "lfcbenchmark.metrics"
++_manual = {}
++
++
++def _check_name(name):
++    if not isinstance(name,str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*",name):
++        raise ValueError(f"invalid metric name: {name!r}")
++
++
++def register_metric(name, function=None):
++    """Register fn(original, reconstructed, **options) -> JSON-compatible dict.
++
++    Functions are invoked after compression/decompression timers have stopped.
++    Inputs are read-only NumPy views. Registration works directly or as a decorator.
++    """
++    _check_name(name)
++    def register(candidate):
++        if not callable(candidate):
++            raise TypeError("metric must be callable")
++        if name in _manual:
++            raise ValueError(f"duplicate metric registration: {name}")
++        _manual[name] = candidate
++        return candidate
++    return register if function is None else register(function)
++
++
++class MetricRegistry:
++    def __init__(self):
++        self._items = {}
++        for name,function in _manual.items():
++            self._items.setdefault(name,[]).append(("local registration",lambda f=function:f))
++        for ep in entry_points(group=ENTRY_POINT_GROUP):
++            _check_name(ep.name)
++            self._items.setdefault(ep.name,[]).append((f"entry point: {ep.value}",ep.load))
++
++    def names(self):
++        return sorted(self._items)
++
++    def origins(self,name):
++        return [item[0] for item in self._items.get(name,())]
++
++    def get(self,name):
++        items = self._items.get(name,())
++        if not items:
++            raise ValueError(f"unknown metric {name!r}; available: {', '.join(self.names())}")
++        if len(items) != 1:
++            raise ValueError(f"duplicate metric {name!r}: {', '.join(self.origins(name))}")
++        function = items[0][1]()
++        if not callable(function):
++            raise TypeError(f"metric {name!r} entry point must expose a callable")
++        return function
++
++
++def validate_metric_specs(specs):
++    if specs is None:
++        return []
++    if not isinstance(specs,list):
++        raise ValueError("quality_metrics must be a list of name/options mappings")
++    names = set()
++    for spec in specs:
++        if not isinstance(spec,dict) or set(spec)-{"name","options"}:
++            raise ValueError("each quality metric accepts name and optional options")
++        name = spec.get("name")
++        _check_name(name)
++        if name in names:
++            raise ValueError(f"duplicate quality metric: {name}")
++        names.add(name)
++        if not isinstance(spec.get("options",{}),dict):
++            raise ValueError("quality metric options must be a mapping")
++        json.dumps(spec,allow_nan=False)
++    return specs
++
++
++def evaluate_registered(original,reconstructed,specs):
++    specs = validate_metric_specs(specs)
++    registry, output = MetricRegistry(), {}
++    a,b = original.view(), reconstructed.view()
++    a.flags.writeable = b.flags.writeable = False
++    for spec in specs:
++        value = registry.get(spec["name"])(a,b,**spec.get("options",{}))
++        if not isinstance(value,dict):
++            raise TypeError(f"metric {spec['name']!r} must return a dictionary")
++        json.dumps(value,allow_nan=False)
++        output[spec["name"]] = value
++    return output
+diff --git a/tests/test_metric_plugins.py b/tests/test_metric_plugins.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_metric_plugins.py
+@@ -0,0 +1,75 @@
++import json
++
++import numpy as np
++import pytest
++
++from lfcbench import AbsoluteError, benchmark, register_metric
++from lfcbench.metric_registry import MetricRegistry, _manual, validate_metric_specs
++from lfcbench.registry import Registry
++from lfcbench.runner import run_config
++
++
++def test_custom_metric_timing_scope_and_readonly_inputs(monkeypatch):
++    from lfcbench import runner
++    calls = []
++    clock = iter([100,200,300,500])
++    monkeypatch.setattr(runner.time,"perf_counter_ns",lambda: next(clock))
++    def score(a,b,*,tag):
++        calls.append(tag)
++        assert not a.flags.writeable and not b.flags.writeable
++        return {"score":float(np.max(np.abs(a-b)))}
++    register_metric("test.quality",score)
++    try:
++        data = np.arange(100,dtype=float)
++        result = benchmark(data,compressor="identity",error=AbsoluteError(.01),
++                           quality_metrics=[{"name":"test.quality","options":{"tag":"called"}}])
++        assert calls == ["called"]
++        assert result["metrics"]["compress_seconds"] == 100/1e9
++        assert result["metrics"]["decompress_seconds"] == 200/1e9
++        assert result["metrics"]["quality"]["test.quality"]["score"] == 0
++    finally:
++        del _manual["test.quality"]
++
++
++def test_metric_yaml_records_only_measured_trials(tmp_path):
++    calls = []
++    register_metric("test.yaml",lambda a,b: calls.append(1) or {"score":0})
++    try:
++        np.save(tmp_path/"a.npy",np.arange(81,dtype=np.float32).reshape(9,9))
++        (tmp_path/"run.yaml").write_text("""
++datasets: [{name: array, path: a.npy}]
++compressors: [{name: identity}]
++error_bounds: [{mode: abs, value: 0.001}]
++warmups: 2
++repetitions: 2
++quality_metrics: [{name: test.yaml}]
++""")
++        output = tmp_path/"run.jsonl"
++        assert run_config(tmp_path/"run.yaml",output,Registry())["ok"] == 2
++        assert calls == [1,1]
++        assert all("test.yaml" in json.loads(line)["metrics"]["quality"] for line in output.read_text().splitlines())
++    finally:
++        del _manual["test.yaml"]
++
++
++def test_plugin_errors_and_registration_conflicts():
++    with pytest.raises(ValueError):
++        validate_metric_specs([{"name":"a"},{"name":"a"}])
++    register_metric("test.invalid",lambda a,b:{"score":float("nan")})
++    try:
++        with pytest.raises(ValueError):
++            register_metric("test.invalid",lambda a,b:{})
++        with pytest.raises(ValueError):
++            benchmark(np.arange(10,dtype=float),compressor="identity",error=AbsoluteError(1),quality_metrics=[{"name":"test.invalid"}])
++    finally:
++        del _manual["test.invalid"]
++
++
++def test_installed_lfcquality_entry_point():
++    pytest.importorskip("lfcquality")
++    assert "lfcquality" in MetricRegistry().names()
++    result = benchmark(np.arange(81,dtype=np.float32).reshape(9,9),compressor="identity",error=AbsoluteError(.01),
++                       quality_metrics=[{"name":"lfcquality","options":{"threads":2,"metrics":["psnr","pcc"]}}])
++    quality = result["metrics"]["quality"]["lfcquality"]["metrics"]
++    assert quality["pcc"]["value"] == pytest.approx(1)
++    assert quality["psnr"]["status"] == "positive_infinity"

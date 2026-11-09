@@ -1,0 +1,16 @@
+Internal ctest changing into directory: /data0/lb/lfcquality-capi.LrkuqcFG/build
+Test project /data0/lb/lfcquality-capi.LrkuqcFG/build
+    Start 1: native_example
+1/5 Test #1: native_example ...................   Passed    0.01 sec
+    Start 2: c_api_example
+2/5 Test #2: c_api_example ....................   Passed    0.01 sec
+    Start 3: cpp_api_example
+3/5 Test #3: cpp_api_example ..................   Passed    0.01 sec
+    Start 4: c_api_edge_cases
+4/5 Test #4: c_api_edge_cases .................   Passed    0.01 sec
+    Start 5: cpp_api_lifetime
+5/5 Test #5: cpp_api_lifetime .................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.03 sec

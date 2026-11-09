@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(LFCQualityCConsumer LANGUAGES C)
+find_package(LFCQuality 0.2 CONFIG REQUIRED)
+add_executable(cmake_c_consumer main.c)
+target_compile_features(cmake_c_consumer PRIVATE c_std_11)
+target_link_libraries(cmake_c_consumer PRIVATE LFCQuality::lfcquality)

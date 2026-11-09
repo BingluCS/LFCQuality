@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lfcquality"
-version = "0.1.0"
+version = "0.2.0"
 description = "Independent, OpenMP-accelerated quality analysis for scientific floating-point fields"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ lfcquality = "lfcquality.integration:quality_metric"
 where = ["src"]
 
 [tool.setuptools.package-data]
-lfcquality = ["native/*.cpp", "native/*.h"]
+lfcquality = ["native/*.cpp", "native/*.h", "native/lfcquality/*.h", "native/lfcquality/*.hpp"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

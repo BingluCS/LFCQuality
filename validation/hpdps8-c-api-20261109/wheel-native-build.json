@@ -1,0 +1,29 @@
+{
+  "source_sha256": "847d486608630c45a8f6425dc28deef78746defb4d091c311bdda5353b3bc619",
+  "compiler_version": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "compile_flags": [
+    "c++",
+    "-std=c++17",
+    "-O3",
+    "-fPIC",
+    "-shared",
+    "-pthread",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fopenmp",
+    "-DLFQ_FFTW",
+    "-DLFQ_FFTW_THREADS",
+    "-I/data0/lb/lfcquality/.native-deps/include"
+  ],
+  "link_flags": [
+    "-L/data0/lb/lfcquality/.native-deps/lib",
+    "-Wl,-rpath,/data0/lb/lfcquality/.native-deps/lib",
+    "-lfftw3_threads",
+    "-lfftw3",
+    "-lm"
+  ],
+  "openmp": "required",
+  "fftw": "required",
+  "library_sha256": "854014c0302c502bbec0eebc3629489c405a846a598dd4d6400ae26298750bef",
+  "library": "/data0/lb/lfcquality-capi.LrkuqcFG/wheel-cache-final/Linux-x86_64/847d486608630c45a8f6/24ce98468d5a4992/liblfcquality.so"
+}

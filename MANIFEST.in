@@ -1,9 +1,11 @@
 include CMakeLists.txt
-recursive-include src/lfcquality/native *.cpp *.h
+recursive-include cmake *.cmake.in
+recursive-include src/lfcquality/native *.cpp *.h *.hpp
 recursive-include docs *.md
-recursive-include examples *.py *.cpp *.json
+recursive-include examples *.py *.c *.cpp *.json
+recursive-include examples CMakeLists.txt
 recursive-include scripts *.py
-recursive-include tests *.py
+recursive-include tests *.py *.c *.cpp
 recursive-include scripts *.sh
 recursive-include integrations *.patch
-recursive-include validation *.md *.json *.txt *.xml
+recursive-include validation *.md *.json *.txt *.xml *.log

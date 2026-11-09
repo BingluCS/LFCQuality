@@ -1,0 +1,4 @@
+PSNR 70.5637 dB, PCC 1, SSIM 0.999999
+error ACF -0.932241, field ACF change -2.75554e-06
+spectral relative power L1 2.13663e-05
+density/temperature PCC change -3.53683e-06

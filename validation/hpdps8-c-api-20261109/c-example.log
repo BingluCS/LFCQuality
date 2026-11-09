@@ -1,0 +1,4 @@
+PSNR 70.564 dB, PCC 0.999999513, SSIM 0.999999452
+axis 0 lag 1: error ACF -0.932241, field ACF change -0.000003
+spectral relative power L1 2.13663e-05 (64 bins, first has 1 modes)
+density/temperature PCC change -3.53688e-06

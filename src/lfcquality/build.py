@@ -15,7 +15,14 @@ import tempfile
 
 def source_digest():
     root = Path(__file__).parent / "native"
-    return hashlib.sha256(b"".join(p.read_bytes() for p in sorted(root.glob("kernels.*")))).hexdigest()
+    files = sorted(p for p in root.rglob("*") if p.is_file() and p.suffix in (".cpp", ".h", ".hpp"))
+    digest = hashlib.sha256()
+    for path in files:
+        digest.update(path.relative_to(root).as_posix().encode("utf-8") + b"\0")
+        contents = path.read_bytes()
+        digest.update(len(contents).to_bytes(8, "big"))
+        digest.update(contents)
+    return digest.hexdigest()
 
 
 def cache_dir():
@@ -60,7 +67,8 @@ def build_native(*, openmp="required", fftw="required", compiler=None):
     if not command or not shutil.which(command[0]):
         raise RuntimeError("C++ compiler not found; set CXX to a C++17 compiler")
     version = subprocess.run(command + ["--version"], check=True, text=True, capture_output=True).stdout.strip()
-    source = Path(__file__).parent / "native" / "kernels.cpp"
+    source_root = Path(__file__).parent / "native"
+    sources = [source_root / "kernels.cpp", source_root / "api.cpp"]
     args = command + ["-std=c++17", "-O3", "-fPIC", "-shared", "-pthread"]
     args += shlex.split(os.environ.get("CPPFLAGS", "")) + shlex.split(os.environ.get("CXXFLAGS", ""))
     # Finite checks and reproducible reductions require IEEE arithmetic.
@@ -92,12 +100,12 @@ def build_native(*, openmp="required", fftw="required", compiler=None):
     if not library.is_file():
         with tempfile.TemporaryDirectory(dir=dest) as directory:
             temporary = Path(directory) / library.name
-            invocation = args + [str(source), "-o", str(temporary)] + links
+            invocation = args + [str(source) for source in sources] + ["-o", str(temporary)] + links
             proc = subprocess.run(invocation, text=True, capture_output=True)
             if proc.returncode:
                 raise RuntimeError("native build failed:\n" + shlex.join(invocation) + "\n" + proc.stderr)
             probe = ctypes.CDLL(str(temporary))
-            if probe.lfq_abi_version() != 1 or bool(probe.lfq_openmp()) != (openmp == "required") or bool(probe.lfq_fftw()) != (fftw == "required"):
+            if probe.lfq_abi_version() != 1 or probe.lfq_c_api_version() != 1 or bool(probe.lfq_openmp()) != (openmp == "required") or bool(probe.lfq_fftw()) != (fftw == "required"):
                 raise RuntimeError("compiled native library failed capability checks")
             os.replace(temporary, library)
     specification["library_sha256"] = hashlib.sha256(library.read_bytes()).hexdigest()
